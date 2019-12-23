@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ObjectPrefs : MonoBehaviour
 {
+    public GameObject deathEffect;
+
     public int health = 100;
 
     public void TakeDamage(int damage)
@@ -12,6 +14,7 @@ public class ObjectPrefs : MonoBehaviour
 
         if (health <= 0)
         {
+            Instantiate(deathEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
