@@ -16,6 +16,11 @@ public class GunController : MonoBehaviour
     public GameObject impactEffect;
     public LineRenderer lineRenderer;
 
+    private Animator animator;
+
+    private AudioSource audioSource;
+    public AudioClip gunShotSound;
+
     [Header("Bullet Fire Vars")]
     public float range = 10f;
     public float autoFireRate = 0.2f;
@@ -34,6 +39,9 @@ public class GunController : MonoBehaviour
 
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
+        animator = GetComponent<Animator>();
+
         lineRenderer.useWorldSpace = true;
         StartCoroutine(StartFireCooldown());
     }
@@ -45,6 +53,9 @@ public class GunController : MonoBehaviour
 
     IEnumerator Shoot()
     {
+        animator.SetTrigger("Shot");
+        audioSource.PlayOneShot(gunShotSound);
+
         RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right);
 
         if (!hitInfo || hitInfo.distance > range)
