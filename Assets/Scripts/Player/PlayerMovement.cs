@@ -6,8 +6,9 @@ public class PlayerMovement : MonoBehaviour
 {
     private PlayerAppearance playerAppearance;
 
-    public float movementSpeed = 0.05f;
-    public float runMultiplier = 2;
+    public float movementSpeed = 0.007f; // 0.007 combined with runMultiplier at 3 I find is a good combination
+    public float speedMultiplier = 1;
+    public float runMultiplier = 3; // 3 I find good
 
     float movementX;
     float movementY;
@@ -25,20 +26,13 @@ public class PlayerMovement : MonoBehaviour
     {
         movementX = Input.GetAxis("Horizontal");
         movementY = Input.GetAxis("Vertical");
-        if (movementX != 0 || movementY != 0)
-        {
-            isWalking = true;
-            playerAppearance.SetAnimationState("IsWalking");
-        }
-        else
-        {
-            isWalking = false;
-            playerAppearance.SetAnimationState("IsIdle");
-        }
 
+        SetMovingState();
         SetPlayerRotation();
         SetMaxMovementSpeedSumTo1();
 
+        movementX *= speedMultiplier;
+        movementY *= speedMultiplier;
         transform.position = new Vector2(transform.position.x + movementX * movementSpeed, transform.position.y + movementY * movementSpeed);
     }
 
@@ -111,5 +105,33 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log(rotationZ);
 
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, -rotationZ);
+    }
+
+    void SetMovingState()
+    {
+        if (movementX == 0 && movementY == 0)
+        {
+            isWalking = false;
+            isRunning = false;
+            speedMultiplier = 1;
+
+            playerAppearance.SetAnimationState("IsIdle");
+        }
+        else if (Input.GetKey(KeyCode.LeftShift))
+        {
+            isRunning = true;
+            isWalking = false;
+            speedMultiplier = runMultiplier;
+
+            playerAppearance.SetAnimationState("IsRunning");
+        }
+        else
+        {
+            isWalking = true;
+            isRunning = false;
+            speedMultiplier = 1;
+
+            playerAppearance.SetAnimationState("IsWalking");
+        }
     }
 }
