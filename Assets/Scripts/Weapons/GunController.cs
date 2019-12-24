@@ -21,6 +21,7 @@ public class GunController : MonoBehaviour
     private AudioSource audioSource;
     public AudioClip gunShotSound;
     public AudioClip emptyClipSound;
+    public AudioClip reloadSound;
 
     [Header("Bullet Fire Vars")]
     public float range = 10f;
@@ -168,7 +169,7 @@ public class GunController : MonoBehaviour
                     break;
             }
         }
-        else if (Input.GetButtonDown("Fire1") && currentAmmoInClip <= 0 && canFire)
+        else if (Input.GetButtonDown("Fire1") && currentAmmoInClip <= 0 && currentExtraAmmoAmount <= 0 && canFire)
         {
             Debug.Log("Clip is empty");
             PlayEmptyClipSound(audioSource, emptyClipSound);
@@ -190,6 +191,8 @@ public class GunController : MonoBehaviour
 
         if (reloading == false)
         {
+            animator.SetTrigger("Reload");
+            audioSource.PlayOneShot(reloadSound);
             reloading = true;
             canFire = false;
             yield return new WaitForSeconds(reloadTime / 2);

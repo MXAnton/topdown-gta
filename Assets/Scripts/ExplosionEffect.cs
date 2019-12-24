@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ExplosionEffect : MonoBehaviour
 {
+    private AudioSource audioSource;
+    public AudioClip explosionSound;
+
     public float explosionPower;
     public float maxExplosionPower = 10f;
     public float explosionRadius = 10f;
@@ -12,6 +15,9 @@ public class ExplosionEffect : MonoBehaviour
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(explosionSound);
+
         explosionPower = maxExplosionPower;
 
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
@@ -19,7 +25,7 @@ public class ExplosionEffect : MonoBehaviour
         int i = 0;
         while (i < hitColliders.Length)
         {
-            hitColliders[i].gameObject.GetComponent<Rigidbody2D>().AddForce(-hitColliders[i].gameObject.transform.up * explosionPower, ForceMode2D.Force);
+            hitColliders[i].gameObject.GetComponent<Rigidbody2D>().AddForce(-hitColliders[i].gameObject.transform.up * explosionPower, ForceMode2D.Impulse);
             i++;
         }
 
@@ -28,21 +34,26 @@ public class ExplosionEffect : MonoBehaviour
 
     IEnumerator FadeOutForce(Collider2D[] hits)
     {
-        yield return new WaitForSeconds(1f);
-        DivideAllVelocityAndAngularDrag(hits);
-
-        yield return new WaitForSeconds(0.6f);
-        DivideAllVelocityAndAngularDrag(hits);
-
         yield return new WaitForSeconds(0.5f);
+        DivideAllVelocityAndAngularDrag(hits);
+
+        yield return new WaitForSeconds(0.4f);
         DivideAllVelocityAndAngularDrag(hits);
 
         yield return new WaitForSeconds(0.3f);
         DivideAllVelocityAndAngularDrag(hits);
 
-        yield return new WaitForSeconds(0.15f);
-        hits[0].gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        hits[0].gameObject.GetComponent<Rigidbody2D>().angularDrag = 0;
+        yield return new WaitForSeconds(0.2f);
+        DivideAllVelocityAndAngularDrag(hits);
+
+        yield return new WaitForSeconds(0.1f);
+        int i = 0;
+        while (i < hits.Length)
+        {
+            hits[i].gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            hits[i].gameObject.GetComponent<Rigidbody2D>().angularDrag = 0;
+            i++;
+        }
     }
 
     void DivideAllVelocityAndAngularDrag(Collider2D[] hits)
@@ -50,8 +61,8 @@ public class ExplosionEffect : MonoBehaviour
         int i = 0;
         while (i < hits.Length)
         {
-            hits[i].gameObject.GetComponent<Rigidbody2D>().velocity = hits[i].gameObject.GetComponent<Rigidbody2D>().velocity / 2;
-            hits[i].gameObject.GetComponent<Rigidbody2D>().angularDrag = hits[i].gameObject.GetComponent<Rigidbody2D>().angularDrag / 2;
+            hits[i].gameObject.GetComponent<Rigidbody2D>().velocity = hits[i].gameObject.GetComponent<Rigidbody2D>().velocity / 3;
+            hits[i].gameObject.GetComponent<Rigidbody2D>().angularDrag = hits[i].gameObject.GetComponent<Rigidbody2D>().angularDrag / 3;
             i++;
         }
     }
