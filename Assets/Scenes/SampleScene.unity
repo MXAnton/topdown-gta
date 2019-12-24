@@ -630,18 +630,20 @@ MonoBehaviour:
     type: 3}
   lineRenderer: {fileID: 456497111}
   gunShotSound: {fileID: 8300000, guid: a512b843fbc62c246b09cef3f2926f59, type: 3}
+  emptyClipSound: {fileID: 8300000, guid: e36d9f4a3189ba44d8182b80fa36899b, type: 3}
   range: 10
   autoFireRate: 0.2
   burstFireRate: 0.1
   fireMode: 2
   fireCooldownTime: 0.5
   canFire: 0
-  shooting: 0
   damage: 20
-  currentAmmoInClip: 0
-  currentExtraAmmoAmount: 0
+  currentAmmoInClip: 1
+  currentExtraAmmoAmount: 70
   ammoClipCapacity: 15
   maxExtraAmmoAmount: 75
+  reloadTime: 2
+  reloading: 0
 --- !u!50 &664192484
 Rigidbody2D:
   serializedVersion: 4
@@ -675,7 +677,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.6
+  m_Volume: 0.152
   m_Pitch: 1
   Loop: 0
   Mute: 0
