@@ -53,10 +53,21 @@ public class GunController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R) || Input.GetButtonDown("Fire1") && currentAmmoInClip == 0)
         {
-            StartCoroutine(Reload());
+            if (transform.parent != null)
+            {
+                StartCoroutine("Reload");
+            }
         }
 
-        CheckShootInput();
+        if (transform.parent != null)
+        {
+            CheckShootInput();
+        } 
+        if (transform.parent == null && reloading == true)
+        {
+            StopReload();
+            //Debug.Log("Canceled reload");
+        }
     }
 
     IEnumerator Shoot()
@@ -180,22 +191,23 @@ public class GunController : MonoBehaviour
     {
         if (currentExtraAmmoAmount <= 0)
         {
-            Debug.Log("No extra reload ammo");
+            //Debug.Log("No extra reload ammo");
             yield break;
         }
         else if (currentAmmoInClip >= ammoClipCapacity)
         {
-            Debug.Log("Ammo clip is already full");
+            //Debug.Log("Ammo clip is already full");
             yield break;
         }
 
         if (reloading == false)
         {
-            animator.SetTrigger("Reload");
-            audioSource.PlayOneShot(reloadSound);
             reloading = true;
             canFire = false;
-            yield return new WaitForSeconds(reloadTime / 2);
+            animator.SetBool("IsReloading", true);
+            audioSource.PlayOneShot(reloadSound);
+
+            yield return new WaitForSeconds(reloadTime);
 
             int reloadAmount = ammoClipCapacity - currentAmmoInClip;
             if (reloadAmount > currentExtraAmmoAmount)
@@ -205,10 +217,17 @@ public class GunController : MonoBehaviour
             currentAmmoInClip += reloadAmount;
             currentExtraAmmoAmount -= reloadAmount;
 
-            yield return new WaitForSeconds(reloadTime / 2);
-            canFire = true;
-            reloading = false;
+            StopReload();
         }
+    }
+
+    void StopReload()
+    {
+        StopCoroutine("Reload");
+        canFire = true;
+        reloading = false;
+        animator.SetBool("IsReloading", false);
+        audioSource.Stop();
     }
 
     public static void PlayEmptyClipSound(AudioSource audioSource, AudioClip sound)
