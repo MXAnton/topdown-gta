@@ -9,6 +9,7 @@ public class ItemPickup : MonoBehaviour
     public LayerMask itemLayerMask;
 
     public GameObject item;
+    public string itemName;
 
     [Header("Throw Item Vars")]
     public float throwPower = 2f;
@@ -31,6 +32,7 @@ public class ItemPickup : MonoBehaviour
             {
                 item = hitCollider.gameObject;
                 ItemController itemController = hitCollider.gameObject.GetComponent<ItemController>();
+                itemName = itemController.itemName;
                 hitCollider.enabled = false;
 
                 itemController.rb2d.simulated = false;
@@ -69,6 +71,7 @@ public class ItemPickup : MonoBehaviour
             itemRb2D.velocity = item.transform.up * currentThrowPower;
         }
 
+        itemName = null;
         item = null;
     }
 }
