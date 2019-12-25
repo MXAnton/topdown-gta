@@ -1,16 +1,34 @@
 fileFormatVersion: 2
-guid: 0bac06d54eb28c24a9b28b9e7f6fbfed
+guid: add03eab1a6ba364b88d0d70a99baabc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2646539884769407136
-    second: pistol1_0
+      213: 363744749011596640
+    second: playerIdle1
   - first:
-      213: 2733824077692208802
-    second: pistol1_1
+      213: -2805505598082217608
+    second: playerIdle2
   - first:
-      213: -6214812151905890496
-    second: pistol1_2
+      213: 4894752920274792221
+    second: playerIdle3
+  - first:
+      213: -4684621669378203004
+    second: playerWalk1
+  - first:
+      213: -4142686107933610895
+    second: playerWalk2
+  - first:
+      213: -5124454571795047404
+    second: playerWalk3
+  - first:
+      213: 5507111749407542866
+    second: playerRun1
+  - first:
+      213: -4968014945549545566
+    second: playerRun2
+  - first:
+      213: 3397053273201627889
+    second: playerRun3
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -143,54 +161,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pistol1_0
+      name: playerIdle1
       rect:
         serializedVersion: 2
-        x: 4
-        y: 3
-        width: 6
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7779d289608161f4487e6a355ace203f
-      internalID: 2646539884769407136
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pistol1_1
-      rect:
-        serializedVersion: 2
-        x: 13
-        y: 2
-        width: 6
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bd7a676da42d05f46b07e3d189c293d2
-      internalID: 2733824077692208802
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pistol1_2
-      rect:
-        serializedVersion: 2
-        x: 22
-        y: 1
-        width: 6
+        x: 10
+        y: 146
+        width: 44
         height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -199,8 +175,176 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2e59044d22aa4d748864f68ae77964bb
-      internalID: -6214812151905890496
+      spriteID: f1c71d4a020ecb1469504f990e3869d8
+      internalID: 363744749011596640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: playerIdle2
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 146
+        width: 42
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f07395e907ebf2479f70ee95c1fbf0f
+      internalID: -2805505598082217608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: playerIdle3
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 146
+        width: 40
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d388073e5889eaa4b80f5d25f550b6b2
+      internalID: 4894752920274792221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: playerWalk1
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 80
+        width: 42
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35c083425024b6b40a370d439e472df6
+      internalID: -4684621669378203004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: playerWalk2
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 82
+        width: 42
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abc7f489aa5488045885674c1daf317d
+      internalID: -4142686107933610895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: playerWalk3
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 80
+        width: 42
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb4ff488585b60a4f95a39debc80de30
+      internalID: -5124454571795047404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: playerRun1
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 15
+        width: 43
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46fa8184032992d4dbe524fb6bbdcc01
+      internalID: 5507111749407542866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: playerRun2
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 18
+        width: 41
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0b8c782cb54a18418350cc1f5e0f72d
+      internalID: -4968014945549545566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: playerRun3
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 15
+        width: 43
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f64e949b6d067fc44a10af49ddc05f95
+      internalID: 3397053273201627889
       vertices: []
       indices: 
       edges: []

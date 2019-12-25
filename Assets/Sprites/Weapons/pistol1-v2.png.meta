@@ -1,25 +1,16 @@
 fileFormatVersion: 2
-guid: 218b15e7ce9734448a0554259ddc4227
+guid: 38536500f0bd8074487f14db6b81fb45
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5917725561423493112
-    second: playerIdle1
+      213: 2733824077692208802
+    second: pistol1_1
   - first:
-      213: 4214373585360863876
-    second: playerIdle2
+      213: -6214812151905890496
+    second: pistol1_2
   - first:
-      213: -6428557179763002179
-    second: playerRunning1
-  - first:
-      213: -4994366243244895538
-    second: playerWalking1
-  - first:
-      213: -3257138579607366986
-    second: playerWalking2
-  - first:
-      213: -6212576898822416320
-    second: playerRunning2
+      213: 4235437862909087455
+    second: pistol1_3
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -152,127 +143,64 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: playerIdle1
+      name: pistol1_1
       rect:
         serializedVersion: 2
-        x: 10
-        y: 82
-        width: 44
+        x: 4
+        y: 5
+        width: 6
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6788c53ed2f35ba4c9d21999bcf0e02c
+      internalID: 2733824077692208802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pistol1_2
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 3
+        width: 6
         height: 28
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 484bf802297873a4da797522e6fba960
-      internalID: 5917725561423493112
+      spriteID: 15fc88c97b7a53146927efe65d890991
+      internalID: -6214812151905890496
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: playerIdle2
+      name: pistol1_3
       rect:
         serializedVersion: 2
-        x: 76
-        y: 82
-        width: 40
-        height: 28
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a77276f94cb7e3448a441e0655ac2ba6
-      internalID: 4214373585360863876
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: playerRunning1
-      rect:
-        serializedVersion: 2
-        x: 138
-        y: 79
-        width: 43
-        height: 31
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 14878995c5fde9546bc4590abb85a548
-      internalID: -6428557179763002179
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: playerWalking1
-      rect:
-        serializedVersion: 2
-        x: 11
-        y: 16
-        width: 42
+        x: 22
+        y: 1
+        width: 6
         height: 30
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3326328ae073e9e428504312806e24b7
-      internalID: -4994366243244895538
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: playerWalking2
-      rect:
-        serializedVersion: 2
-        x: 75
-        y: 16
-        width: 42
-        height: 30
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dce476fd5f8bbcd4fbdb5a250f45742e
-      internalID: -3257138579607366986
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: playerRunning2
-      rect:
-        serializedVersion: 2
-        x: 139
-        y: 15
-        width: 43
-        height: 31
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a26a163e056c32b4c9da4011e5f356ea
-      internalID: -6212576898822416320
+      spriteID: d9f1c40549a0c164ba08e7a1278cd912
+      internalID: 4235437862909087455
       vertices: []
       indices: 
       edges: []
