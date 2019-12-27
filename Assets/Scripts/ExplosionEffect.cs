@@ -11,7 +11,7 @@ public class ExplosionEffect : MonoBehaviour
     public float maxExplosionPower = 10f;
     public float explosionRadius = 10f;
 
-    Vector2 point = new Vector2(0, 0);
+    public int maxExplosionDamage = 50;
 
     void Start()
     {
@@ -23,9 +23,15 @@ public class ExplosionEffect : MonoBehaviour
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
 
         int i = 0;
+        float distanceToHit;
         while (i < hitColliders.Length)
         {
-            hitColliders[i].gameObject.GetComponent<Rigidbody2D>().AddForce(-hitColliders[i].gameObject.transform.up * explosionPower, ForceMode2D.Impulse);
+            distanceToHit = Vector3.Distance(transform.position, hitColliders[i].gameObject.transform.position) * 2;
+            //Debug.Log(distanceToHit);
+
+            StartCoroutine(GiveDamage(hitColliders[i], distanceToHit));
+
+            hitColliders[i].gameObject.GetComponent<Rigidbody2D>().AddForce(-hitColliders[i].gameObject.transform.up * explosionPower / distanceToHit, ForceMode2D.Impulse);
             i++;
         }
 
@@ -34,9 +40,6 @@ public class ExplosionEffect : MonoBehaviour
 
     IEnumerator FadeOutForce(Collider2D[] hits)
     {
-        yield return new WaitForSeconds(0.5f);
-        DivideAllVelocityAndAngularDrag(hits);
-
         yield return new WaitForSeconds(0.4f);
         DivideAllVelocityAndAngularDrag(hits);
 
@@ -47,11 +50,17 @@ public class ExplosionEffect : MonoBehaviour
         DivideAllVelocityAndAngularDrag(hits);
 
         yield return new WaitForSeconds(0.1f);
+        DivideAllVelocityAndAngularDrag(hits);
+
+        yield return new WaitForSeconds(0.05f);
         int i = 0;
         while (i < hits.Length)
         {
-            hits[i].gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            hits[i].gameObject.GetComponent<Rigidbody2D>().angularDrag = 0;
+            if (hits[i] != null)
+            {
+                hits[i].gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                hits[i].gameObject.GetComponent<Rigidbody2D>().angularDrag = 0;
+            }
             i++;
         }
     }
@@ -59,11 +68,30 @@ public class ExplosionEffect : MonoBehaviour
     void DivideAllVelocityAndAngularDrag(Collider2D[] hits)
     {
         int i = 0;
+        float distanceToHit;
         while (i < hits.Length)
         {
-            hits[i].gameObject.GetComponent<Rigidbody2D>().velocity = hits[i].gameObject.GetComponent<Rigidbody2D>().velocity / 3;
-            hits[i].gameObject.GetComponent<Rigidbody2D>().angularDrag = hits[i].gameObject.GetComponent<Rigidbody2D>().angularDrag / 3;
+            if (hits[i] != null)
+            {
+                distanceToHit = Vector3.Distance(transform.position, hits[i].gameObject.transform.position) * 2;
+                //Debug.Log(distanceToHit);
+
+                hits[i].gameObject.GetComponent<Rigidbody2D>().velocity = hits[i].gameObject.GetComponent<Rigidbody2D>().velocity / 3 / distanceToHit;
+                hits[i].gameObject.GetComponent<Rigidbody2D>().angularDrag = hits[i].gameObject.GetComponent<Rigidbody2D>().angularDrag / 3 / distanceToHit;
+            }
             i++;
+        }
+    }
+
+    IEnumerator GiveDamage(Collider2D hit, float hitDistance)
+    {
+        yield return new WaitForSeconds(0.2f);
+
+        ObjectPrefs objectPrefs = hit.GetComponent<ObjectPrefs>();
+        if (objectPrefs != null)
+        {
+            int explosionDamage = Mathf.RoundToInt(maxExplosionDamage / hitDistance);
+            objectPrefs.TakeDamage(explosionDamage);
         }
     }
 }

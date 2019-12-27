@@ -132,8 +132,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionSound: {fileID: 8300000, guid: ae602393c56b53742963a2a324c2535f, type: 3}
   explosionPower: 0
-  maxExplosionPower: 5
-  explosionRadius: 10
+  maxExplosionPower: 4
+  explosionRadius: 2
+  maxExplosionDamage: 70
 --- !u!82 &7955869787264731582
 AudioSource:
   m_ObjectHideFlags: 0

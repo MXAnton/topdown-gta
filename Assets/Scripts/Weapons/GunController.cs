@@ -23,20 +23,23 @@ public class GunController : MonoBehaviour
     public AudioClip emptyClipSound;
     public AudioClip reloadSound;
 
-    [Header("Bullet Fire Vars")]
-    public float range = 10f;
+    [Header("Firemode Vars")]
+    public FireModes fireMode;
     public float autoFireRate = 0.2f;
     public float burstFireRate = 0.1f;
-    public FireModes fireMode;
+
+    [Header("Fire Vars")]
+    public float range = 10f;
+    public int damage = 20;
     public float fireCooldownTime = 0.5f;
     public bool canFire = false;
-    public int damage = 20;
 
     [Header("Ammunation Vars")]
     public int currentAmmoInClip;
     public int currentExtraAmmoAmount;
     public int ammoClipCapacity = 15;
     public int maxExtraAmmoAmount = 75;
+    [Space]
     public float reloadTime = 2f;
     public bool reloading = false;
 
@@ -46,7 +49,7 @@ public class GunController : MonoBehaviour
         animator = GetComponent<Animator>();
 
         lineRenderer.useWorldSpace = true;
-        StartCoroutine(StartFireCooldown());
+        StartCoroutine(StartFireCooldown(fireCooldownTime));
     }
 
     void Update()
@@ -105,11 +108,11 @@ public class GunController : MonoBehaviour
         currentAmmoInClip -= 1;
     }
 
-    IEnumerator StartFireCooldown()
+    IEnumerator StartFireCooldown(float fireCooldown)
     {
         canFire = false;
 
-        yield return new WaitForSeconds(fireCooldownTime);
+        yield return new WaitForSeconds(fireCooldown);
 
         canFire = true;
     }
@@ -154,27 +157,22 @@ public class GunController : MonoBehaviour
                 case FireModes.Semi:
                     if (Input.GetButtonDown("Fire1"))
                     {
-                        StopCoroutine(StartFireCooldown());
-                        StartCoroutine(StartFireCooldown());
+                        StartCoroutine(StartFireCooldown(fireCooldownTime));
 
-                        StopCoroutine(Shoot());
                         StartCoroutine(Shoot());
                     }
                     break;
                 case FireModes.Burst:
                     if (Input.GetButtonDown("Fire1"))
                     {
-                        StopCoroutine(StartFireCooldown());
-                        StartCoroutine(StartFireCooldown());
+                        StartCoroutine(StartFireCooldown(fireCooldownTime));
 
-                        StopCoroutine(BurstShoot());
                         StartCoroutine(BurstShoot());
                     }
                     break;
                 case FireModes.Auto:
                     if (Input.GetButton("Fire1"))
                     {
-                        StopCoroutine(AutoShoot());
                         StartCoroutine(AutoShoot());
                     }
                     break;
@@ -217,6 +215,7 @@ public class GunController : MonoBehaviour
             currentAmmoInClip += reloadAmount;
             currentExtraAmmoAmount -= reloadAmount;
 
+            yield return new WaitForSeconds(fireCooldownTime / 2);
             StopReload();
         }
     }
