@@ -14,6 +14,15 @@ public class ObjectPrefs : MonoBehaviour
 
         if (health <= 0)
         {
+            ItemPickup itemPickup = GetComponent<ItemPickup>();
+            if (itemPickup != null)
+            {
+                if (itemPickup.item != null)
+                {
+                    StartCoroutine(itemPickup.ThrowItem());
+                }
+            }
+
             Instantiate(deathEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }

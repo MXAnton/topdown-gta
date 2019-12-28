@@ -48,7 +48,7 @@ public class ItemPickup : MonoBehaviour
         }
     }
 
-    IEnumerator ThrowItem()
+    public IEnumerator ThrowItem()
     {
         Rigidbody2D itemRb2D = item.GetComponent<Rigidbody2D>();
         float currentThrowPower = throwPower;
