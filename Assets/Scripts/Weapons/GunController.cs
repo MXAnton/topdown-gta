@@ -34,6 +34,8 @@ public class GunController : MonoBehaviour
     public float fireCooldownTime = 0.5f;
     public bool canFire = false;
 
+    public LayerMask ignoreShotLayerMask;
+
     [Header("Ammunation Vars")]
     public int currentAmmoInClip;
     public int currentExtraAmmoAmount;
@@ -45,6 +47,8 @@ public class GunController : MonoBehaviour
 
     private void Awake()
     {
+        ignoreShotLayerMask = ~ignoreShotLayerMask;
+
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
 
@@ -75,10 +79,10 @@ public class GunController : MonoBehaviour
 
     IEnumerator Shoot()
     {
-        animator.SetTrigger("Shot");
+        animator.SetTrigger("Shoot");
         audioSource.PlayOneShot(gunShotSound);
 
-        RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right);
+        RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right, Mathf.Infinity, ignoreShotLayerMask);
 
         if (!hitInfo || hitInfo.distance > range)
         {

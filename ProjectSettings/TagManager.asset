@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Solid
   - VehicleDoor
+  - Weapon
   layers:
   - Default
   - TransparentFX
