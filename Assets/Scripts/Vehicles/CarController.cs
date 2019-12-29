@@ -13,14 +13,9 @@ public class CarController : MonoBehaviour
     public float brakeTorque = 0.5f;
 
     [Header("Steering Vars")]
-    public float maxSteering = 1f;
+    public float maxSteering = 0.3f;
     public float steeringSensivity = 0.5f;
     public float steeringMovementSpeedMultiplier = 50f;
-
-    void Start()
-    {
-        
-    }
 
     void Update()
     {
@@ -38,9 +33,18 @@ public class CarController : MonoBehaviour
 
     void AccelerateDeccelerate(float throttle)
     {
-        if (throttle > 0.1f || throttle < -0.1f)
+        if (throttle > 0.1f)
         {
-            if (throttle < -0.1f && movementSpeed > 0)
+            movementSpeed += accelerationSpeed * throttle * Time.deltaTime;
+
+            if (movementSpeed > maxMovementSpeed)
+            {
+                movementSpeed = maxMovementSpeed;
+            }
+        }
+        else if (throttle < -0.1f)
+        {
+            if (movementSpeed > 0)
             {
                 movementSpeed += brakeTorque * throttle * Time.deltaTime;
             }
@@ -49,12 +53,12 @@ public class CarController : MonoBehaviour
                 movementSpeed += accelerationSpeed * throttle * Time.deltaTime;
             }
 
-            if (movementSpeed > maxMovementSpeed)
+            if (movementSpeed < -maxMovementSpeed)
             {
-                movementSpeed = maxMovementSpeed;
+                movementSpeed = -maxMovementSpeed;
             }
         }
-        else
+        else // Deccelerate
         {
             if (movementSpeed > 0)
             {

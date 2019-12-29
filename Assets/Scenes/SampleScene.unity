@@ -175,7 +175,7 @@ MonoBehaviour:
   deccelerationSpeed: 0.006
   maxMovementSpeed: 0.05
   brakeTorque: 0.04
-  maxSteering: 0.8
+  maxSteering: 0.4
   steeringSensivity: 0.2
   steeringMovementSpeedMultiplier: 10
 --- !u!61 &12380810
@@ -1102,7 +1102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed910c400da3c974489065b6dd25ba9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 12380808}
+  target: {fileID: 732448171}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
