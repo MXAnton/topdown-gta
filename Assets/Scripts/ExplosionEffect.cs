@@ -26,13 +26,16 @@ public class ExplosionEffect : MonoBehaviour
         float distanceToHit;
         while (i < hitColliders.Length)
         {
-            distanceToHit = Vector3.Distance(transform.position, hitColliders[i].gameObject.transform.position) * 2;
-            //Debug.Log(distanceToHit);
+            if (hitColliders[i] != null)
+            {
+                distanceToHit = Vector3.Distance(transform.position, hitColliders[i].gameObject.transform.position) * 2;
+                //Debug.Log(distanceToHit);
 
-            StartCoroutine(GiveDamage(hitColliders[i], distanceToHit));
+                StartCoroutine(GiveDamage(hitColliders[i], distanceToHit));
 
-            hitColliders[i].gameObject.GetComponent<Rigidbody2D>().AddForce(-hitColliders[i].gameObject.transform.up * explosionPower / distanceToHit, ForceMode2D.Impulse);
-            i++;
+                hitColliders[i].gameObject.GetComponent<Rigidbody2D>().AddForce(-hitColliders[i].gameObject.transform.up * explosionPower / distanceToHit, ForceMode2D.Impulse);
+                i++;
+            }
         }
 
         StartCoroutine(FadeOutForce(hitColliders));

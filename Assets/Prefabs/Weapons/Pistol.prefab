@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 8681936013073381767}
   - component: {fileID: 8681936013073381768}
   m_Layer: 9
-  m_Name: Gun
+  m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109,12 +109,12 @@ MonoBehaviour:
   gunShotSound: {fileID: 8300000, guid: a512b843fbc62c246b09cef3f2926f59, type: 3}
   emptyClipSound: {fileID: 8300000, guid: 8f9e10c8c6ff7354687b48ec00d8ec79, type: 3}
   reloadSound: {fileID: 8300000, guid: 01fe8230ca120924ba9f396d90ea785d, type: 3}
-  fireMode: 2
+  fireMode: 0
   autoFireRate: 0.2
   burstFireRate: 0.1
   range: 10
   damage: 20
-  fireCooldownTime: 0.5
+  fireCooldownTime: 0.3
   canFire: 0
   currentAmmoInClip: 1
   currentExtraAmmoAmount: 70

@@ -119,28 +119,29 @@ public class GunController : MonoBehaviour
 
     IEnumerator BurstShoot()
     {
-        StopCoroutine(Shoot());
+        canFire = false;
+
         StartCoroutine(Shoot());
         yield return new WaitForSeconds(burstFireRate);
 
-        if (currentAmmoInClip == 0)
+        if (currentAmmoInClip > 0)
         {
-            StopCoroutine(Shoot());
             StartCoroutine(Shoot());
             yield return new WaitForSeconds(burstFireRate);
         }
-        if (currentAmmoInClip == 0)
+        if (currentAmmoInClip > 0)
         {
-            StopCoroutine(Shoot());
             StartCoroutine(Shoot());
         }
-        yield return new WaitForSeconds(burstFireRate);
+
+        yield return new WaitForSeconds(fireCooldownTime);
+
+        canFire = true;
     }
 
     IEnumerator AutoShoot()
     {
         canFire = false;
-        StopCoroutine(Shoot());
         StartCoroutine(Shoot());
 
         yield return new WaitForSeconds(autoFireRate);
@@ -165,8 +166,6 @@ public class GunController : MonoBehaviour
                 case FireModes.Burst:
                     if (Input.GetButtonDown("Fire1"))
                     {
-                        StartCoroutine(StartFireCooldown(fireCooldownTime));
-
                         StartCoroutine(BurstShoot());
                     }
                     break;
@@ -198,7 +197,7 @@ public class GunController : MonoBehaviour
             yield break;
         }
 
-        if (reloading == false)
+        if (reloading == false && canFire == true)
         {
             reloading = true;
             canFire = false;
@@ -223,8 +222,8 @@ public class GunController : MonoBehaviour
     void StopReload()
     {
         StopCoroutine("Reload");
-        canFire = true;
         reloading = false;
+        canFire = true;
         animator.SetBool("IsReloading", false);
         audioSource.Stop();
     }
