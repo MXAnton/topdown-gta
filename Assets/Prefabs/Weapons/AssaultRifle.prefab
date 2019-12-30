@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5367434109741662168}
   - component: {fileID: 5367434109741662169}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,7 +137,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5367434110201118356}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 5367434110485933544}
   - component: {fileID: 5367434110485933545}
   - component: {fileID: 5367434110485933542}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: AssaultRifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,13 +240,13 @@ MonoBehaviour:
   fireMode: 2
   autoFireRate: 0.2
   burstFireRate: 0.1
-  range: 10
-  damage: 20
+  range: 15
+  damage: 25
   fireCooldownTime: 0.3
   canFire: 0
   ignoreShotLayerMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 768
   currentAmmoInClip: 1
   currentExtraAmmoAmount: 60
   ammoClipCapacity: 30
@@ -420,7 +420,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5367434111319566916}
   - component: {fileID: 5367434111319566917}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: GunBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}

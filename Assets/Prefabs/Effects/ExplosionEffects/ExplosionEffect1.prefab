@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9599410da50c624a976d8a75f544199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyTime: 10
+  destroyTime: 6
 --- !u!114 &1677300011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,7 +134,7 @@ MonoBehaviour:
   explosionPower: 0
   maxExplosionPower: 4
   explosionRadius: 2
-  maxExplosionDamage: 70
+  maxExplosionDamage: 100
 --- !u!82 &7955869787264731582
 AudioSource:
   m_ObjectHideFlags: 0

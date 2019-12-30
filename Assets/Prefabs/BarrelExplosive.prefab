@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5220874194242754710}
   - component: {fileID: -8319231796461039380}
   - component: {fileID: 5220874194242754711}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: BarrelExplosive
   m_TagString: Solid
   m_Icon: {fileID: 0}

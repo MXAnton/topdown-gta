@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8681936012821588730}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 8681936013073381766}
   - component: {fileID: 8681936013073381767}
   - component: {fileID: 8681936013073381768}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ MonoBehaviour:
   canFire: 0
   ignoreShotLayerMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 768
   currentAmmoInClip: 1
   currentExtraAmmoAmount: 70
   ammoClipCapacity: 15
@@ -292,7 +292,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8681936013398617014}
   - component: {fileID: 8681936013398617015}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -420,7 +420,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8681936013976190506}
   - component: {fileID: 8681936013976190507}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: GunBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}

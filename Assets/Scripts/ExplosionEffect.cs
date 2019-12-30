@@ -63,6 +63,9 @@ public class ExplosionEffect : MonoBehaviour
             {
                 hits[i].gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                 hits[i].gameObject.GetComponent<Rigidbody2D>().angularDrag = 0;
+                yield return new WaitForSeconds(0.5f);
+                hits[i].gameObject.GetComponent<Rigidbody2D>().freezeRotation = true;
+                hits[i].gameObject.GetComponent<Rigidbody2D>().freezeRotation = false;
             }
             i++;
         }
