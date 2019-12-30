@@ -237,9 +237,10 @@ MonoBehaviour:
   gunShotSound: {fileID: 8300000, guid: e63588bdf433b394f9ccf6c11996945d, type: 3}
   emptyClipSound: {fileID: 8300000, guid: 8f9e10c8c6ff7354687b48ec00d8ec79, type: 3}
   reloadSound: {fileID: 8300000, guid: 000cf42d1bc16e040acd97fae3d67e9e, type: 3}
-  fireMode: 2
+  currentFireMode: 2
+  enabledFireModes: 000000000100000002000000
   autoFireRate: 0.2
-  burstFireRate: 0.1
+  burstFireRate: 0.15
   range: 15
   damage: 25
   fireCooldownTime: 0.3

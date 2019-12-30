@@ -10,9 +10,10 @@ public class PlayerUIController : MonoBehaviour
 
     private GunController gunController;
 
-    public TextMeshProUGUI healthText;
     public TextMeshProUGUI itemText;
     public TextMeshProUGUI ammoText;
+    public TextMeshProUGUI fireModeText;
+    public TextMeshProUGUI healthText;
 
     void Start()
     {
@@ -22,11 +23,25 @@ public class PlayerUIController : MonoBehaviour
 
     void Update()
     {
+        SetGunController();
+
         healthText.text = "" + objectPrefs.health;
 
         SetItemText();
-        SetGunController();
         SetAmmoText();
+        SetFireModeText();
+    }
+
+    void SetGunController()
+    {
+        if (itemPickup.item != null)
+        {
+            gunController = itemPickup.item.GetComponent<GunController>();
+        }
+        else
+        {
+            gunController = null;
+        }
     }
 
     void SetItemText()
@@ -46,18 +61,6 @@ public class PlayerUIController : MonoBehaviour
         }
     }
 
-    void SetGunController()
-    {
-        if (itemPickup.item != null)
-        {
-            gunController = itemPickup.item.GetComponent<GunController>();
-        }
-        else
-        {
-            gunController = null;
-        }
-    }
-
     void SetAmmoText()
     {
         if (gunController != null)
@@ -67,6 +70,18 @@ public class PlayerUIController : MonoBehaviour
         else
         {
             ammoText.text = "";
+        }
+    }
+
+    void SetFireModeText()
+    {
+        if (gunController != null)
+        {
+            fireModeText.text = "> " + gunController.currentFireMode;
+        }
+        else
+        {
+            fireModeText.text = "";
         }
     }
 }

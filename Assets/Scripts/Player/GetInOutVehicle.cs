@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GetInOutVehicle : MonoBehaviour
 {
-    public Transform raycastPosition;
     public float range = 1f;
 
     void Update()
@@ -29,7 +28,7 @@ public class GetInOutVehicle : MonoBehaviour
 
     void FindVehicleDoor()
     {
-        RaycastHit2D hitInfo = Physics2D.Raycast(raycastPosition.position, transform.up, range);
+        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, transform.up, range);
 
         if (hitInfo && hitInfo.transform.gameObject.tag == "VehicleDoor")
         {

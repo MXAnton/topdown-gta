@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class GunController : MonoBehaviour
 {
@@ -24,7 +25,8 @@ public class GunController : MonoBehaviour
     public AudioClip reloadSound;
 
     [Header("Firemode Vars")]
-    public FireModes fireMode;
+    public FireModes currentFireMode;
+    public FireModes[] enabledFireModes;
     public float autoFireRate = 0.2f;
     public float burstFireRate = 0.1f;
 
@@ -58,22 +60,56 @@ public class GunController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R) || Input.GetButtonDown("Fire1") && currentAmmoInClip == 0)
-        {
-            if (transform.parent != null)
-            {
-                StartCoroutine("Reload");
-            }
-        }
-
         if (transform.parent != null)
         {
+            CheckReloadInput();
+
+            if (Input.GetKeyDown(KeyCode.V))
+            {
+                ChangeFireMode();
+            }
+
             CheckShootInput();
         } 
-        if (transform.parent == null && reloading == true)
+        else if (transform.parent == null && reloading == true)
         {
             StopReload();
             //Debug.Log("Canceled reload");
+        }
+    }
+
+    void CheckShootInput()
+    {
+        if (currentAmmoInClip > 0 && canFire)
+        {
+            switch (currentFireMode)
+            {
+                case FireModes.Semi:
+                    if (Input.GetButtonDown("Fire1"))
+                    {
+                        StartCoroutine(StartFireCooldown(fireCooldownTime));
+
+                        StartCoroutine(Shoot());
+                    }
+                    break;
+                case FireModes.Burst:
+                    if (Input.GetButtonDown("Fire1"))
+                    {
+                        StartCoroutine(BurstShoot());
+                    }
+                    break;
+                case FireModes.Auto:
+                    if (Input.GetButton("Fire1"))
+                    {
+                        StartCoroutine(AutoShoot());
+                    }
+                    break;
+            }
+        }
+        else if (Input.GetButtonDown("Fire1") && currentAmmoInClip <= 0 && currentExtraAmmoAmount <= 0)
+        {
+            Debug.Log("Clip is empty");
+            PlayEmptyClipSound(audioSource, emptyClipSound);
         }
     }
 
@@ -112,15 +148,6 @@ public class GunController : MonoBehaviour
         currentAmmoInClip -= 1;
     }
 
-    IEnumerator StartFireCooldown(float fireCooldown)
-    {
-        canFire = false;
-
-        yield return new WaitForSeconds(fireCooldown);
-
-        canFire = true;
-    }
-
     IEnumerator BurstShoot()
     {
         canFire = false;
@@ -153,38 +180,27 @@ public class GunController : MonoBehaviour
         canFire = true;
     }
 
-    void CheckShootInput()
+    IEnumerator StartFireCooldown(float fireCooldown)
     {
-        if (currentAmmoInClip > 0 && canFire)
-        {
-            switch (fireMode)
-            {
-                case FireModes.Semi:
-                    if (Input.GetButtonDown("Fire1"))
-                    {
-                        StartCoroutine(StartFireCooldown(fireCooldownTime));
+        canFire = false;
 
-                        StartCoroutine(Shoot());
-                    }
-                    break;
-                case FireModes.Burst:
-                    if (Input.GetButtonDown("Fire1"))
-                    {
-                        StartCoroutine(BurstShoot());
-                    }
-                    break;
-                case FireModes.Auto:
-                    if (Input.GetButton("Fire1"))
-                    {
-                        StartCoroutine(AutoShoot());
-                    }
-                    break;
-            }
-        }
-        else if (Input.GetButtonDown("Fire1") && currentAmmoInClip <= 0 && currentExtraAmmoAmount <= 0 && canFire)
+        yield return new WaitForSeconds(fireCooldown);
+
+        canFire = true;
+    }
+
+
+    public static void PlayEmptyClipSound(AudioSource audioSource, AudioClip sound)
+    {
+        audioSource.PlayOneShot(sound);
+    }
+
+
+    void CheckReloadInput()
+    {
+        if (Input.GetKeyDown(KeyCode.R) || Input.GetButtonDown("Fire1") && currentAmmoInClip == 0)
         {
-            Debug.Log("Clip is empty");
-            PlayEmptyClipSound(audioSource, emptyClipSound);
+            StartCoroutine("Reload");
         }
     }
 
@@ -232,8 +248,38 @@ public class GunController : MonoBehaviour
         audioSource.Stop();
     }
 
-    public static void PlayEmptyClipSound(AudioSource audioSource, AudioClip sound)
+
+    void ChangeFireMode()
     {
-        audioSource.PlayOneShot(sound);
+        if (enabledFireModes.Length == 2)
+        {
+            switch (currentFireMode)
+            {
+                case FireModes.Semi:
+                    currentFireMode = FireModes.Burst;
+                    break;
+                case FireModes.Burst:
+                    currentFireMode = FireModes.Semi;
+                    break;
+                case FireModes.Auto:
+                    currentFireMode = FireModes.Semi;
+                    break;
+            }
+        }
+        else if (enabledFireModes.Length == 3)
+        {
+            switch (currentFireMode)
+            {
+                case FireModes.Semi:
+                    currentFireMode = FireModes.Burst;
+                    break;
+                case FireModes.Burst:
+                    currentFireMode = FireModes.Auto;
+                    break;
+                case FireModes.Auto:
+                    currentFireMode = FireModes.Semi;
+                    break;
+            }
+        }
     }
 }
